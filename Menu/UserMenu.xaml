@@ -1,0 +1,20 @@
+﻿<Page x:Class="Sport.Menu.UserMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d" 
+      d:DesignHeight="105" d:DesignWidth="200"
+      Title="UserMenu">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Профиль" x:Name="Profile" Click="Profile_Click"/>
+        <Button Grid.Row="1" Content="Товары" x:Name="Products" Click="Products_Click"/>
+        <Button Grid.Row="2" Content="Мои заказы" x:Name="Orders" Click="Orders_Click"/>
+    </Grid>
+</Page>

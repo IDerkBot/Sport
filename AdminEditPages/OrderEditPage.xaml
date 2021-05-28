@@ -1,0 +1,36 @@
+﻿<Page x:Class="Sport.AdminEditPages.OrderEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d" 
+      d:DesignHeight="175" d:DesignWidth="260"
+      Title="OrderEditPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="210"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Клиент"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Товар"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Кол-во"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Сумма"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClientTB" Text="{Binding Client.Name}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ProductCB" SelectedValue="{Binding Equipment.Name}" SelectionChanged="Product_SelectionChanged"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Count" Text="{Binding Count}" TextChanged="Count_TextChanged"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="Sum" Text="{Binding Sum}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Back_Click" Content="Вернуться" Width="100" Margin="5"/>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Save_Click" Content="Сохранить" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Page>

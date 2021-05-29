@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище dbSportModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище dbSportModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,28 +99,11 @@
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="dbSportEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clients" EntityType="dbSportModel.Client" />
-          <EntitySet Name="Equipments" EntityType="dbSportModel.Equipment" />
-          <EntitySet Name="Orders" EntityType="dbSportModel.Order" />
-          <EntitySet Name="Users" EntityType="dbSportModel.User" />
-          <AssociationSet Name="FK_Client_User" Association="dbSportModel.FK_Client_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Client" EntitySet="Clients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Client" Association="dbSportModel.FK_Order_Client">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Equipment" Association="dbSportModel.FK_Order_Equipment">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -132,8 +115,8 @@
           <Property Name="Sex" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdUser" Type="Int32" />
           <Property Name="Cart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="dbSportModel.FK_Client_User" FromRole="Client" ToRole="User" />
-          <NavigationProperty Name="Orders" Relationship="dbSportModel.FK_Order_Client" FromRole="Client" ToRole="Order" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Client_User" FromRole="Client" ToRole="User" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -143,7 +126,7 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Storage" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="dbSportModel.FK_Order_Equipment" FromRole="Equipment" ToRole="Order" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Equipment" FromRole="Equipment" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -154,22 +137,22 @@
           <Property Name="IdEquipment" Type="Int32" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Sum" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Client" Relationship="dbSportModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
-          <NavigationProperty Name="Equipment" Relationship="dbSportModel.FK_Order_Equipment" FromRole="Order" ToRole="Equipment" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Order_Equipment" FromRole="Order" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Access" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="dbSportModel.FK_Client_User" FromRole="User" ToRole="Client" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Client_User" FromRole="User" ToRole="Client" />
         </EntityType>
         <Association Name="FK_Client_User">
-          <End Type="dbSportModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="dbSportModel.Client" Role="Client" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -180,8 +163,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Client">
-          <End Type="dbSportModel.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="dbSportModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
@@ -192,8 +175,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Equipment">
-          <End Type="dbSportModel.Equipment" Role="Equipment" Multiplicity="0..1" />
-          <End Type="dbSportModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="Id" />
@@ -203,7 +186,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="dbSportEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Equipment" Association="Self.FK_Order_Equipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -212,44 +213,44 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="dbSportModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Cart" ColumnName="Cart" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Cart" ColumnName="Cart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="dbSportModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="Storage" ColumnName="Storage" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="dbSportModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Sum" ColumnName="Sum" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="IdEquipment" ColumnName="IdEquipment" />
-                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdEquipment" ColumnName="IdEquipment" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="dbSportModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Access" ColumnName="Access" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Access" ColumnName="Access" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

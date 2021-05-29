@@ -24,7 +24,7 @@ namespace Sport.UserEditPages
         void Count_TextChanged(object sender, TextChangedEventArgs e)
         { ChangeSum(); }
         void Back_Click(object sender, RoutedEventArgs e)
-        { Manager.MainFrame.Navigate(new AdminPages.OrdersPage()); }
+        { Manager.MainFrame.Navigate(new UserPages.OrdersPage()); }
         void Save_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -35,7 +35,7 @@ namespace Sport.UserEditPages
             {
                 dbSportEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
-                Manager.MainFrame.Navigate(new AdminPages.OrdersPage());
+                Manager.MainFrame.Navigate(new UserPages.OrdersPage());
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
         }

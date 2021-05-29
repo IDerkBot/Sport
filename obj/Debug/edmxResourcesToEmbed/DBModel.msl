@@ -4,44 +4,44 @@
     <EntitySetMapping Name="Clients">
       <EntityTypeMapping TypeName="dbSportModel.Client">
         <MappingFragment StoreEntitySet="Client">
-          <ScalarProperty Name="Cart" ColumnName="Cart" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="Sex" ColumnName="Sex" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Cart" ColumnName="Cart" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Equipments">
       <EntityTypeMapping TypeName="dbSportModel.Equipment">
         <MappingFragment StoreEntitySet="Equipment">
-          <ScalarProperty Name="Storage" ColumnName="Storage" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="dbSportModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Sum" ColumnName="Sum" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="IdEquipment" ColumnName="IdEquipment" />
-          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+          <ScalarProperty Name="IdEquipment" ColumnName="IdEquipment" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Sum" ColumnName="Sum" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="dbSportModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="Access" ColumnName="Access" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Access" ColumnName="Access" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -14,9 +14,9 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="DGOrders" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Товар" Width="*"/>
-                <DataGridTextColumn Header="Кол-во" Width="50"/>
-                <DataGridTextColumn Header="Сумма" Width="50"/>
+                <DataGridTextColumn Header="Товар" Width="*" Binding="{Binding Equipment.Name}"/>
+                <DataGridTextColumn Header="Кол-во" Width="50" Binding="{Binding Count}"/>
+                <DataGridTextColumn Header="Сумма" Width="50" Binding="{Binding Sum}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Вернуться" Click="Back_Click" Grid.Row="1"/>

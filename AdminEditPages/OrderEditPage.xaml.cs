@@ -8,15 +8,22 @@ namespace Sport.AdminEditPages
 {
     public partial class OrderEditPage : Page
     {
+        Order _selectOrder = new Order();
         Order _currentOrder = new Order();
         public OrderEditPage(Order selectedOrder = null)
         {
             InitializeComponent();
-            if (selectedOrder != null) _currentOrder = selectedOrder;
+            if (selectedOrder != null)
+            {
+                _currentOrder = selectedOrder;
+                _selectOrder = selectedOrder;
+            }
             DataContext = _currentOrder;
-            ProductCB.ItemsSource = dbSportEntities.GetContext().Equipments.ToList().Select(x => x.Name);
-            ProductCB.SelectedItem = dbSportEntities.GetContext().Equipments.Where(x => x.Id == _currentOrder.IdEquipment).Select(x => x.Name).Single();
-            //ChangeSum();
+            Count.Text = _currentOrder.Count.ToString();
+            ProductCB.ItemsSource = dbSportEntities.GetContext().Equipments.Select(x => x.Name).ToList();
+            if (selectedOrder != null)
+                ProductCB.SelectedItem = dbSportEntities.GetContext().Equipments.Where(x => x.Id == _currentOrder.IdEquipment).Select(x => x.Name).Single();
+            ChangeSum();
         }
         void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -36,14 +43,23 @@ namespace Sport.AdminEditPages
         { Manager.MainFrame.Navigate(new AdminPages.OrdersPage()); }
         void ChangeSum()
         {
-            int countText = 0;
-            if (int.TryParse(Count.Text, out countText))
+            if(ProductCB.SelectedItem != null && Count.Text != null)
             {
-                var price = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Select(x => x.Price).Single();
-                var count = countText;
-                Sum.Text = $"{price * count}";
+                if (int.TryParse(Count.Text, out int countText))
+                {
+                    var price = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Select(x => x.Price).ToList().Single();
+                    var count = countText;
+                    int? _storage = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Select(x => x.Storage).Single();
+                    if (count > _storage)
+                    {
+                        MessageBox.Show($"Количество которое вы указали превышает количество на складе\nНа складе: {_storage}");
+                        Count.Text = _storage.ToString();
+                        return;
+                    }
+                    Sum.Text = $"{price * count}";
+                }
+                else { MessageBox.Show($"Введите только цифры!"); Count.Text = "0"; ChangeSum(); }
             }
-            else { MessageBox.Show($"Введите только цифры!"); }
         }
         void Product_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { ChangeSum(); }

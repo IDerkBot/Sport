@@ -10,7 +10,7 @@ namespace Sport.AdminPages
         public OrdersPage()
         {
             InitializeComponent();
-            DGOrders.ItemsSource = dbSportEntities.GetContext().Orders.ToList();
+            GetTableData();
         }
         void AddClient_Click(object sender, RoutedEventArgs e)
         { Manager.MainFrame.Navigate(new AdminEditPages.OrderEditPage()); }
@@ -34,5 +34,10 @@ namespace Sport.AdminPages
         { Manager.MainFrame.Navigate(new Menu.AdminMenu()); }
         void Edit_Click(object sender, RoutedEventArgs e)
         { Manager.MainFrame.Navigate(new AdminEditPages.OrderEditPage((sender as Button).DataContext as Order)); }
+        void GetTableData()
+        {
+            DGOrders.Items.Clear();
+            DGOrders.ItemsSource = dbSportEntities.GetContext().Orders.ToList();
+        }
     }
 }

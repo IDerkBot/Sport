@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Coding\Code\C#\Sport\App.xaml
-151497886856
+16898962201
 2-1779647843
-29-1526601825
+30324064983
 181050524721
-AdminEditPages\ClientEditPage.xaml;AdminEditPages\EquipmentEditPage.xaml;AdminEditPages\OrderEditPage.xaml;AdminPages\ClientsPage.xaml;AdminPages\EquipmentsPage.xaml;AdminPages\OrdersPage.xaml;AuthReg\Auth.xaml;AuthReg\Reg.xaml;MainWindow.xaml;Menu\AdminMenu.xaml;Menu\UserMenu.xaml;UserEditPages\OrderEditPage.xaml;UserPages\OrdersPage.xaml;UserPages\ProductsPage.xaml;UserPages\ProfilePage.xaml;
+AdminEditPages\ClientAddPage.xaml;AdminEditPages\ClientEditPage.xaml;AdminEditPages\EquipmentEditPage.xaml;AdminEditPages\OrderEditPage.xaml;AdminPages\ClientsPage.xaml;AdminPages\EquipmentsPage.xaml;AdminPages\OrdersPage.xaml;AuthReg\Auth.xaml;AuthReg\Reg.xaml;MainWindow.xaml;Menu\AdminMenu.xaml;Menu\UserMenu.xaml;UserEditPages\OrderEditPage.xaml;UserPages\OrdersPage.xaml;UserPages\ProductsPage.xaml;UserPages\ProfilePage.xaml;
 
-False
+True
 

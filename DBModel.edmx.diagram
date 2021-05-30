@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d79fba51dee34256b630c9129ddbae63" Name="Diagram1">
-        <EntityTypeShape EntityType="dbSportModel.Client" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbSportModel.Equipment" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbSportModel.Order" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbSportModel.User" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="dbSportModel.FK_Client_User" ManuallyRouted="false" />
-        <AssociationConnector Association="dbSportModel.FK_Order_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="dbSportModel.FK_Order_Equipment" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbSportModel.Client" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="dbSportModel.Equipment" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="dbSportModel.Order" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="dbSportModel.User" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="dbSportModel.FK_Client_User" />
+        <AssociationConnector Association="dbSportModel.FK_Order_Client" />
+        <AssociationConnector Association="dbSportModel.FK_Order_Equipment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

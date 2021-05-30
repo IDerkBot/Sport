@@ -24,7 +24,6 @@ namespace Sport
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public string Sex { get; set; }
         public Nullable<int> IdUser { get; set; }
         public string Cart { get; set; }
     

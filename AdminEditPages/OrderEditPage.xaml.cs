@@ -8,7 +8,7 @@ namespace Sport.AdminEditPages
 {
     public partial class OrderEditPage : Page
     {
-        Order _selectOrder = new Order();
+        Order _selectOrder;
         Order _currentOrder = new Order();
         int _countOld = 0;
         int _countNew = 0;
@@ -23,8 +23,10 @@ namespace Sport.AdminEditPages
             DataContext = _currentOrder;
             Count.Text = _currentOrder.Count.ToString();
             ProductCB.ItemsSource = dbSportEntities.GetContext().Equipments.Select(x => x.Name).ToList();
+            ClientCB.ItemsSource = dbSportEntities.GetContext().Clients.Select(x => x.Name).ToList();
             if (selectedOrder != null)
             {
+                ClientCB.SelectedItem = dbSportEntities.GetContext().Clients.Where(x => x.Id == _currentOrder.IdClient).Select(x => x.Name).Single();
                 ProductCB.SelectedItem = dbSportEntities.GetContext().Equipments.Where(x => x.Id == _currentOrder.IdEquipment).Select(x => x.Name).Single();
                 _countOld = int.Parse(_currentOrder.Count.ToString());
             }
@@ -34,6 +36,8 @@ namespace Sport.AdminEditPages
         {
             StringBuilder errors = new StringBuilder();
             _currentOrder.Sum = decimal.Parse(Sum.Text);
+            _currentOrder.Client = dbSportEntities.GetContext().Clients.Where(x => x.Name == ClientCB.SelectedItem.ToString()).Single();
+            _currentOrder.IdEquipment = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Select(x => x.Id).Single();
             if (errors.Length > 0) { MessageBox.Show(errors.ToString()); return; }
             if (_currentOrder.Id == 0) dbSportEntities.GetContext().Orders.Add(_currentOrder);
             try
@@ -53,8 +57,7 @@ namespace Sport.AdminEditPages
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
         }
-        void Back_Click(object sender, RoutedEventArgs e)
-        { Manager.MainFrame.Navigate(new AdminPages.OrdersPage()); }
+        void Back_Click(object sender, RoutedEventArgs e) { Manager.MainFrame.Navigate(new AdminPages.OrdersPage()); }
         void ChangeSum()
         {
             if(ProductCB.SelectedItem != null && Count.Text != null)
@@ -76,9 +79,8 @@ namespace Sport.AdminEditPages
                 else { MessageBox.Show($"Введите только цифры!"); Count.Text = "0"; ChangeSum(); }
             }
         }
-        void Product_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { ChangeSum(); }
-        void Count_TextChanged(object sender, TextChangedEventArgs e)
-        { ChangeSum(); }
+        void Product_SelectionChanged(object sender, SelectionChangedEventArgs e) { ChangeSum(); }
+        void Count_TextChanged(object sender, TextChangedEventArgs e) { ChangeSum(); }
+        void AddClient_Click(object sender, RoutedEventArgs e) { Manager.MainFrame.Navigate(new ClientAddPage(_currentOrder)); }
     }
 }

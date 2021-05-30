@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminEditPages\ClientAddPage.xaml.cs">
+      <DependentUpon>ClientAddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminEditPages\ClientEditPage.xaml.cs">
       <DependentUpon>ClientEditPage.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
     <Compile Include="UserPages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AdminEditPages\ClientAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminEditPages\ClientEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -49,3 +49,5 @@ D:\Coding\Code\C#\Sport\obj\Debug\AdminPages\EquipmentsPage.baml
 D:\Coding\Code\C#\Sport\obj\Debug\AdminPages\OrdersPage.baml
 D:\Coding\Code\C#\Sport\obj\Debug\UserEditPages\OrderEditPage.g.cs
 D:\Coding\Code\C#\Sport\obj\Debug\UserEditPages\OrderEditPage.baml
+D:\Coding\Code\C#\Sport\obj\Debug\AdminEditPages\ClientAddPage.baml
+D:\Coding\Code\C#\Sport\obj\Debug\AdminEditPages\ClientAddPage.g.cs

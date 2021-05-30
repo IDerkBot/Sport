@@ -22,8 +22,10 @@
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Товар"/>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Кол-во"/>
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Сумма"/>
-
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClientTB" Text="{Binding Client.Name}"/>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox x:Name="ClientCB" Width="170" Margin="0" SelectedItem="{Binding Client.Name}"/>
+            <Button x:Name="AddClient" Content="+" Margin="5,0,0,0" Width="25" Height="25" Click="AddClient_Click"/>
+        </StackPanel>
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ProductCB" SelectedValue="{Binding Equipment.Name}" SelectionChanged="Product_SelectionChanged"/>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="Count" Text="{Binding Count}" TextChanged="Count_TextChanged"/>
         <TextBlock Grid.Row="3" Grid.Column="1" x:Name="Sum" Text="{Binding Sum}" VerticalAlignment="Center" HorizontalAlignment="Center"/>

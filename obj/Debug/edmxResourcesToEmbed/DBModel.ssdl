@@ -8,7 +8,6 @@
     <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Address" Type="nvarchar(max)" />
     <Property Name="Phone" Type="nvarchar(max)" />
-    <Property Name="Sex" Type="nvarchar(max)" />
     <Property Name="IdUser" Type="int" />
     <Property Name="Cart" Type="nvarchar(max)" />
   </EntityType>

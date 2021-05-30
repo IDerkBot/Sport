@@ -10,6 +10,8 @@ namespace Sport.AdminEditPages
     {
         Order _selectOrder = new Order();
         Order _currentOrder = new Order();
+        int _countOld = 0;
+        int _countNew = 0;
         public OrderEditPage(Order selectedOrder = null)
         {
             InitializeComponent();
@@ -22,7 +24,10 @@ namespace Sport.AdminEditPages
             Count.Text = _currentOrder.Count.ToString();
             ProductCB.ItemsSource = dbSportEntities.GetContext().Equipments.Select(x => x.Name).ToList();
             if (selectedOrder != null)
+            {
                 ProductCB.SelectedItem = dbSportEntities.GetContext().Equipments.Where(x => x.Id == _currentOrder.IdEquipment).Select(x => x.Name).Single();
+                _countOld = int.Parse(_currentOrder.Count.ToString());
+            }
             ChangeSum();
         }
         void Save_Click(object sender, RoutedEventArgs e)
@@ -33,6 +38,15 @@ namespace Sport.AdminEditPages
             if (_currentOrder.Id == 0) dbSportEntities.GetContext().Orders.Add(_currentOrder);
             try
             {
+                if (_countOld >= 0)
+                {
+                    var _selectEqupmint = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Single();
+                    if (_countOld != _countNew)
+                    {
+                        if (_countOld > _countNew) _selectEqupmint.Storage += _countOld - _countNew;
+                        else if (_countOld < _countNew) _selectEqupmint.Storage -= _countNew;
+                    }
+                }
                 dbSportEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
                 Manager.MainFrame.Navigate(new AdminPages.OrdersPage());
@@ -56,6 +70,7 @@ namespace Sport.AdminEditPages
                         Count.Text = _storage.ToString();
                         return;
                     }
+                    _countNew = count;
                     Sum.Text = $"{price * count}";
                 }
                 else { MessageBox.Show($"Введите только цифры!"); Count.Text = "0"; ChangeSum(); }

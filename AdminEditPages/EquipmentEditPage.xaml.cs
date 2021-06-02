@@ -37,11 +37,18 @@ namespace Sport.AdminEditPages
         }
         void Storage_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(!int.TryParse(Storage.Text, out int result))
+            if (int.TryParse(Storage.Text, out int count))
             {
-                MessageBox.Show("Введите только цифры!");
-                Storage.Text = dbSportEntities.GetContext().Equipments.Where(x => x.Name == _currentEquipment.Name).Select(x => x.Storage).Single().ToString();
-            }   
+                
+                var _storage = dbSportEntities.GetContext().Equipments.Where(x => x.Name == Name.Text).Select(x => x.Storage).Single();
+                if (count > _storage)
+                {
+                    MessageBox.Show($"Количество которое вы указали превышает количество на складе\nНа складе: {_storage}");
+                    Storage.Text = _storage.ToString();
+                    return;
+                }
+            }
+            else { MessageBox.Show($"Введите только цифры!"); Storage.Text = "0"; }
         }
     }
 }

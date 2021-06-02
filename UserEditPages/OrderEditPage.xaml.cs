@@ -36,7 +36,6 @@ namespace Sport.UserEditPages
                 int count = int.Parse(Count.Text);
                 Equipment equip = dbSportEntities.GetContext().Equipments.Where(x => x.Name == ProductCB.SelectedItem.ToString()).Single();
                 equip.Storage -= count;
-                dbSportEntities.GetContext().Equipments.Add(equip);
                 dbSportEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
                 Manager.MainFrame.Navigate(new UserPages.OrdersPage());

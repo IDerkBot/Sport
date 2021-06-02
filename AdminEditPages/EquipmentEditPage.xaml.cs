@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,14 @@ namespace Sport.AdminEditPages
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message.ToString()); }
+        }
+        void Storage_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(!int.TryParse(Storage.Text, out int result))
+            {
+                MessageBox.Show("Введите только цифры!");
+                Storage.Text = dbSportEntities.GetContext().Equipments.Where(x => x.Name == _currentEquipment.Name).Select(x => x.Storage).Single().ToString();
+            }   
         }
     }
 }

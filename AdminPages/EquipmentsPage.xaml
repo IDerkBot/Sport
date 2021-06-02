@@ -15,7 +15,8 @@
         <DataGrid x:Name="DGEquipments" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="200*"/>
-                <DataGridTextColumn Header="Стоимость" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Price}" Width="70"/>
+                <DataGridTextColumn Header="На складе" Binding="{Binding Storage}" Width="70"/>
                 <DataGridTemplateColumn Width="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

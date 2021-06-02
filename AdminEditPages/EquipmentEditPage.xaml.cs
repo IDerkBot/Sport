@@ -41,12 +41,8 @@ namespace Sport.AdminEditPages
             {
                 
                 var _storage = dbSportEntities.GetContext().Equipments.Where(x => x.Name == Name.Text).Select(x => x.Storage).Single();
-                if (count > _storage)
-                {
-                    MessageBox.Show($"Количество которое вы указали превышает количество на складе\nНа складе: {_storage}");
-                    Storage.Text = _storage.ToString();
-                    return;
-                }
+                _storage = count;
+                Storage.Text = _storage.ToString();
             }
             else { MessageBox.Show($"Введите только цифры!"); Storage.Text = "0"; }
         }
